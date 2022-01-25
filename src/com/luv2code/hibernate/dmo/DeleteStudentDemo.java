@@ -35,6 +35,9 @@ public class DeleteStudentDemo {
 			session.delete(student);
 			session.getTransaction().commit();
 			
+			// another approach
+			session.createQuery("delete from Student where id=10").executeUpdate();
+			
 			// get Student list
 			session = factory.getCurrentSession();
 			session.beginTransaction();

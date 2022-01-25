@@ -9,7 +9,7 @@ import com.luv2code.hibernate.demo.oneToOne.entity.Instructor;
 import com.luv2code.hibernate.demo.oneToOne.entity.InstructorDetail;
 
 
-public class OneToOne {
+public class CreateOneToOne {
 	
 	public static void main(String[] args) {
 		
@@ -26,12 +26,12 @@ public class OneToOne {
 		try {
 			
 			// create the objects
-			//Instructor instructor = new Instructor("Chad","Darby","darby@luv2code.com");		
-			//InstructorDetail detail= new InstructorDetail("http://www.luv2code.com/youtube","Luv 2 code !!");
+			Instructor instructor = new Instructor("Golam","Rabbani","rishad@luv2code.com");		
+			InstructorDetail detail= new InstructorDetail("http://www.fb.com/youtube","Cricket !!");
 			
 			// 2nd object
-			Instructor instructor = new Instructor("Shah","Alam","alam@luv2code.com");		
-			InstructorDetail detail= new InstructorDetail("http://www.twitter.com/alam","Football");
+			//Instructor instructor = new Instructor("Shah","Alam","alam@luv2code.com");		
+			//InstructorDetail detail= new InstructorDetail("http://www.twitter.com/alam","Football");
 						
 					
 			//associate the objects
