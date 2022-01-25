@@ -7,8 +7,13 @@ public class TestJdbc {
 
 	public static void main(String[] args) {
 		
+		// basic hibernate
+	//	String jdbcUrl="jdbc:mysql://localhost:3306/projectdb?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC";
 		
-		String jdbcUrl="jdbc:mysql://localhost:3306/projectdb?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC";
+		
+		// advance hibernate (OneToOne )
+		String jdbcUrl="jdbc:mysql://localhost:3306/hb_01_one_to_one_uni?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC";
+		
 		String user="root";
 		String pass= "root";
 		
