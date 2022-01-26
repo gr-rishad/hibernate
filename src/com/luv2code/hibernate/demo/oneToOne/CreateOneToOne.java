@@ -26,8 +26,8 @@ public class CreateOneToOne {
 		try {
 			
 			// create the objects
-			Instructor instructor = new Instructor("Golam","Rabbani","rishad@luv2code.com");		
-			InstructorDetail detail= new InstructorDetail("http://www.fb.com/youtube","Cricket !!");
+			Instructor instructor = new Instructor("Shakib","Hasan","shakib@luv2code.com");		
+			InstructorDetail detail= new InstructorDetail("http://www.fb.com/shakib","Cricket !!");
 			
 			// 2nd object
 			//Instructor instructor = new Instructor("Shah","Alam","alam@luv2code.com");		
