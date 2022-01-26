@@ -27,7 +27,7 @@ public class InstructorDetail {
 	private int id;
 	@Column(name = "youtube_channel")
 	private String youtubeChannel;
-	@Column(name = "hobby")
+	@Column(name = "hobby") 
 	private String hobby;
 	
 	@OneToOne(mappedBy = "instructorDetail",cascade = {CascadeType.DETACH,

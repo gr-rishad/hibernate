@@ -42,6 +42,7 @@ public class DeleteInstructorDetailDemo {
 			// remove the associated object reference
 			// break bi-directional link
 			instructorDetail.getInstructor().setInstructorDetail(null);
+			
 			session.delete(instructorDetail);
 			
 			// commit session
