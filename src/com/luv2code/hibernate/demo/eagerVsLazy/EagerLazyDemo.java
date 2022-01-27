@@ -1,17 +1,19 @@
-package com.luv2code.hibernate.demo.OneToMany;
+package com.luv2code.hibernate.demo.eagerVsLazy;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import com.luv2code.hibernate.demo.OneToMany.Course;
 import com.luv2code.hibernate.demo.oneToOne.entity.Instructor;
 import com.luv2code.hibernate.demo.oneToOne.entity.InstructorDetail;
 
-public class CreateInstructorDemo {
+public class EagerLazyDemo {
 	
 	public static void main(String[] args) {
 		
 		
+
 		// create session factory
 		SessionFactory factory= new Configuration()
 				.configure("hibernate.cfg.xml")
@@ -25,24 +27,29 @@ public class CreateInstructorDemo {
 		
 		try {
 			
-			// create the object
-			Instructor tempInstructor= new Instructor("Golam","Rabbani","rishad@luv2code.com");
-			
-			InstructorDetail detail= new InstructorDetail("http://fb.com","playing cricket");
-			
-			// associate the objects
-			tempInstructor.setInstructorDetail(detail);
-			
+
 			// start session
 			session.beginTransaction();
 			
-			//save the instructor
-			System.out.println("Saving Instructor :"+tempInstructor);
-			session.save(tempInstructor);
+			
+			// get the instructor from db
+			int id=1;
+			Instructor instructor= session.get(Instructor.class,id);
+			
+			System.out.println("Instructor :"+instructor);
+			System.out.println("Courses:"+instructor.getCourses());
 			
 			
 			//commit session
 			session.getTransaction().commit();
+			
+			System.out.println("We are going to closed the session. \n");
+			
+			// end session
+			session.close();
+			
+			// get courses for the instructor
+			System.out.println("Courses:"+instructor.getCourses());
 			
 			System.out.println("DONE");
 		}finally {
@@ -52,5 +59,8 @@ public class CreateInstructorDemo {
 			factory.close();
 		}
 	}
+
+		
+	
 
 }

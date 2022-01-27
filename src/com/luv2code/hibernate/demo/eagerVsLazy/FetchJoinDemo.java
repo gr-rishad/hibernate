@@ -1,17 +1,20 @@
-package com.luv2code.hibernate.demo.OneToMany;
+package com.luv2code.hibernate.demo.eagerVsLazy;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
+import com.luv2code.hibernate.demo.OneToMany.Course;
 import com.luv2code.hibernate.demo.oneToOne.entity.Instructor;
 import com.luv2code.hibernate.demo.oneToOne.entity.InstructorDetail;
 
-public class CreateInstructorDemo {
+
+public class FetchJoinDemo {
 	
 	public static void main(String[] args) {
 		
-		
+
 		// create session factory
 		SessionFactory factory= new Configuration()
 				.configure("hibernate.cfg.xml")
@@ -25,24 +28,32 @@ public class CreateInstructorDemo {
 		
 		try {
 			
-			// create the object
-			Instructor tempInstructor= new Instructor("Golam","Rabbani","rishad@luv2code.com");
-			
-			InstructorDetail detail= new InstructorDetail("http://fb.com","playing cricket");
-			
-			// associate the objects
-			tempInstructor.setInstructorDetail(detail);
-			
 			// start session
 			session.beginTransaction();
 			
-			//save the instructor
-			System.out.println("Saving Instructor :"+tempInstructor);
-			session.save(tempInstructor);
+			// hibernate query with HQL
 			
+			// get the instructor from db
+			int id=1;
+			
+			Query<Instructor> query= session.createQuery("select i from Instructor i "
+					+ "JOIN FETCH i.courses "
+					+"where i.id=:theInstructorId",
+					Instructor.class);
+			
+			// set parameter on query
+			query.setParameter("theInstructorId", id);
+			
+			// execute query and set instructor
+			Instructor instructor= query.getSingleResult();
+			
+			System.out.println("Course Instructir :"+ instructor);
 			
 			//commit session
 			session.getTransaction().commit();
+			
+			// end session
+			session.close();
 			
 			System.out.println("DONE");
 		}finally {
